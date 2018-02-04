@@ -1,53 +1,17 @@
-%\documentclass[a4paer]{article}
-%\documentclass[12pt,onecolumn]{IEEEtran}
-%\linespread{1.6}
-%\documentclass[11pt,journal,comsoc]{IEEEtran}
 \documentclass[journal]{IEEEtran}
 
 \usepackage{amsmath}
-%\usepackage{booktabs}
-
-%\usepackage[cmintegrals]{newtxmath}
 \usepackage{graphicx}
 \usepackage{subfigure}
-%\usepackage{multirow}
-%\usepackage{diagbox}
-%\usepackage{stfloats}
 \usepackage[square, comma, sort&compress, numbers]{natbib}
-%\usepackage{cite}
-%\usepackage[table]{xcolor}
-%\usepackage[table,xcdraw]{xcolor}
-%\usepackage{algorithm} %//format of the algorithm
-%\usepackage{algorithmic} %//format of the algorithm
-%\usepackage{titlesec}
 
-
-%\newenvironment{sequation}{\begin{equation}\small}{\end{equation}}
-%\usepackage[nocompress]{cite}
-%\renewcommand\citepunct{,~}
-%\renewcommand\citedash{-}
-%\usepackage{algpseudocode}
-%\documentclass[journal]{IEEEtran}
-%
-%\ifCLASSINFOpdf
-%\else
-%\fi
-%
-%\hyphenation{op-tical net-works semi-conduc-tor}
-%
-%\usepackage{amsmath}
-%\usepackage{graphicx}
-%%\usepackage[nosort]{cite}
 
 \begin{document}
-%\title{A robust synchronization algorithm for OFDM/OQAM system}
-%\Large
 \bibliographystyle{IEEEtran}
 
-
 \title{ {Joint Synchronization and Channel Estimation of ACO-OFDM Systems with Simplified Transceiver}
-%\thanks{Manuscript received November 24, 2016.}
-\thanks{Xuewen Qian is with Laboratoire des Signaux et Syst¨¨mes (L2S), CentraleSup\'elec-CNRS-Universit\'e Paris-Sud, Universit\'e Paris-Saclay, 3, rue Joliot Curie, 91192, Gif-sur-Yvette, France. e-mail: xuew.qian@gmail.com. %marco.direnzo@l2s.centralesupelec.fr.
+
+\thanks{Xuewen Qian is with Laboratoire des Signaux et Syst¨¨mes (L2S), CentraleSup\'elec-CNRS-Universit\'e Paris-Sud, Universit\'e Paris-Saclay, 3, rue Joliot Curie, 91192, Gif-sur-Yvette, France. e-mail: xuew.qian@gmail.com.
 Honggui~Deng is with the Department of Physics and Electronics, Central South University, Shenzhen Institute of Central South University, Guilin University of Electronic Technology and Guangxi Key Laboratory of Information Materials (e-mail: denghonggui@163.com).
 Hailang He is with Department of Information Engineering, Shaoyang University, Shaoyang, Hunan, China (e-mail:7887302@qq.com). }
 }
@@ -56,12 +20,8 @@ Hailang He is with Department of Information Engineering, Shaoyang University, S
         %Marco Di Renzo,~\IEEEmembership{Senior Member,~IEEE}
         Honggui Deng, ~\IEEEmembership{Member,~IEEE}
         and~ Hailang He }
-%\author{Xuewen~Qian,
-
- %       }
-
-
 \maketitle
+
 \begin{abstract}
 To facilitate the development of asymmetrically clipped optical OFDM (ACO-OFDM) systems, a joint synchronization and channel estimation scheme is proposed. The preamble used in the scheme is based on zero correlation code pair (ZCC pair) and has impulse-like correlation relationship. This property can let the results of synchronization process be the coarsely estimated channel time response, thus simplifies channel frequency response generation. Also, a transceiver with low complexity is proposed. The proposed transceiver needs only half the amount of multiplications compared to conventional transceiver. Simulation results reveal that the proposed scheme achieves better performance both in synchronization and channel estimation than existing schemes.
 \end{abstract}
@@ -69,8 +29,6 @@ To facilitate the development of asymmetrically clipped optical OFDM (ACO-OFDM) 
 \begin{IEEEkeywords}
 Synchronization, channel estimation, ACO-OFDM, low complexity transceiver.
 \end{IEEEkeywords}
-
-
 
 \section{Introduction}
 Visual light communication (VLC) technology\cite{Chi2015,Qian2016Synchronisation} is a promising technique providing light and ensuring data transmission at the same time. Besides, the light emitting diode (LED) \cite{tsonev20143,ferreira2016high} as one of the most popular light sources can promote the widespread utilization of VLC systems. However, multi-path distortion caused by the glass reflections can heavily reduce the communication qualities. Thus, orthogonal frequency division multiplexing (OFDM) technique is introduced to combat the multi-path effect.
@@ -81,19 +39,14 @@ In IoT systems, low complexity is essential to the ACO-OFDM system implementatio
 
 It is well known that OFDM systems are sensitive to synchronization errors and are heavily affected by the complex channels. Many researches focus on making use of the preamble symbols to synchronize signals and estimate channel frequency response at the same time. Like systems in radio communication systems, the channel state information (CSI) is estimated via preamble symbols in time domain and the channel frequency response can be calculated using CSI.
 
-In \cite{Tian2008}, Tian et. al. proposed a synchronization scheme based on the symmetric symbols. However, this scheme has low estimation precision and the high side-lobes. Ranjha et. al \cite{Ranjha2015} proposed a new timing metric with synchronization performance enhancement but the scheme still has high side-lobes. Thus, the results of synchronization process of Tian's and Ranjha's schemes cannot be exploited for channel estimation. For channel estimation, a common scheme is least square (LS) estimation scheme \cite{wu2016channel}.
-The synchronization and channel estimation scheme cannot be combined as a whole for the mentioned schemes.
-Aspired by \cite{Qian2017}, modified zero correlation code (ZCC) pair symbols designed based on Physical layer for dynamic spectrum access and cognitive radio (PHYDYAS) \cite{Bellanger2010} filter have impulse-like aperiodic correlation results and are used to estimate CSI to perform channel estimation in DCO-OFDM systems. %This kind of technique can also be applied to ACO-OFDM channel estimation and synchronization.
+In \cite{Tian2008}, Tian et. al. proposed a synchronization scheme based on the symmetric symbols. However, this scheme has low estimation precision and the high side-lobes. Ranjha et. al \cite{Ranjha2015} proposed a new timing metric with synchronization performance enhancement but the scheme still has high side-lobes. Thus, the results of synchronization process of Tian's and Ranjha's schemes cannot be exploited for channel estimation. For channel estimation, a common scheme is least square (LS) estimation scheme \cite{wu2016channel}. The synchronization and channel estimation scheme cannot be combined as a whole for the mentioned schemes. Aspired by \cite{Qian2017}, modified zero correlation code (ZCC) pair symbols designed based on Physical layer for dynamic spectrum access and cognitive radio (PHYDYAS) \cite{Bellanger2010} filter have impulse-like aperiodic correlation results and are used to estimate CSI to perform channel estimation in DCO-OFDM systems. 
 
-In this letter, the ACO-OFDM system is firstly investigated and a new transceiver is proposed to reduce the calculation complexity. After that a joint synchronization and channel estimation scheme based on ZCC pair is proposed for ACO-OFDM system.
-The rest is organized as follows. In Section II, the system model is presented, including the channel model, ACO-OFDM-based VLC system and the new transceiver. Then, the joint synchronization and channel estimation scheme is proposed in Section III. In Section IV, performance and simulation results are analysed. In the end, the conclusion is drawn in Section V.
+In this letter, the ACO-OFDM system is firstly investigated and a new transceiver is proposed to reduce the calculation complexity. After that a joint synchronization and channel estimation scheme based on ZCC pair is proposed for ACO-OFDM system. The rest is organized as follows. In Section II, the system model is presented, including the channel model, ACO-OFDM-based VLC system and the new transceiver. Then, the joint synchronization and channel estimation scheme is proposed in Section III. In Section IV, performance and simulation results are analysed. In the end, the conclusion is drawn in Section V.
 
 \section{System Model}
 
 	\subsection{VLC Channel Model}
-		A realistic VLC channel is determined by many factors. As simulated in \cite{Uysal2015Lifi}, in manufacturing cell environment, the maximum path delay may exceed 80ns which is bigger than that of home environment.
-%the maximum path delay in home environment is about 60ns and there is often one line of sight (LOS) response while the not line of sight (NLOS) responses are extremely small. However in manufacturing cell environment, the maximum path delay may exceed 80ns.
-There are more strong responses as many light traces.
+		A realistic VLC channel is determined by many factors. As simulated in \cite{Uysal2015Lifi}, in manufacturing cell environment, the maximum path delay may exceed 80ns which is bigger than that of home environment. There are more strong responses as many light traces.
 		
 		The VLC channel can be modeled as
         \begin{equation}\label{channel_model}
@@ -132,7 +85,6 @@ There are more strong responses as many light traces.
         \begin{equation}\label{equ:LS}
           \widehat{H}(2m+1) = Y(2m+1) / X_c(2m+1), 0\leq m\leq N-1.
         \end{equation}
-        %since only the used sub-channels are useful.
 		
 	\subsection{Simplified Transmitter and Receiver}
 		Since the original signals are clipped at zero, the direct FFT results of $ x_c(n) $ are not the same as that of $ x(n) $, but the odd sub-carriers are not distorted. %Only the odd sub-carriers are necessary.
@@ -148,9 +100,7 @@ There are more strong responses as many light traces.
 		where $ IFFT(\cdot)_{N/2} $	represents the IFFT process of $ N/2 $ length.	There are $ N/2 log_2(N/2) + N/2 = N/2 log_2(N) $ multiplications used in generation of $ C $ which is just  half the calculations of conventional method $( N log_2(N) )$.
 		
 		For the receiver, the results of the FFT process must be multiplied with 2 due to the signal clipping \cite{Wang2017Optical}. Since only the odd sub-carriers are necessary, thus the received data on the $ 2i+1 $ sub-carrier can be obtained as
-        %\begin{small}
 		\begin{eqnarray}\label{equ:sim_receiver}
-            %\begin{split}
 			 &X_{2i+1}& \nonumber\\
             &=& \frac{2}{N}\sum_{n=0}^{N-1} y(n) e^{-j\frac{2\pi}{N}n(2i+1)}\nonumber\\
 			&=& \frac{2}{N}\sum_{n=0}^{N/2-1} y(n) e^{-j\frac{2\pi}{N}n(2i+1)}  \nonumber\\
@@ -160,24 +110,13 @@ There are more strong responses as many light traces.
 			&=& \frac{2}{N}\sum_{n=0}^{N/2-1} ( y(n)-y(n+N/2) ) e^{-j\frac{2\pi}{N}n(2i+1)}  \nonumber\\
 					 %&=& \sum_{n=0}^{N/2-1} ( y(n)-y(n+N/2) ) e^{-j\frac{2\pi}{N}n} e^{-j\frac{2\pi}{N/2}ni} \nonumber\\
 			&=& FFT( ( y(n)-y(n+N/2) ) e^{-j\frac{2\pi}{N}n} )_{N/2},
-            %\end{split}
 		\end{eqnarray}
-        %\end{small}
 		where $ FFT(\cdot)_{N/2} $	represents the FFT process of $ N/2 $ length. Just as the proposed transmitter, the computational complexity of proposed receiver is half that of conventional receiver.
-				
-		%\begin{figure}[htb]
-		%	\centering \includegraphics[width=8cm]{asymmetric_property_ACO_OFDM.eps}
-		%	\caption{The symmetric property of symbols after the multipath channels} \label{fig:symmetric_property_illustration}
-		%\end{figure}
-		
+						
 \section{Synchronization and Channel Estimation Scheme with Low Complexity Transceiver}		
-	In \cite{Qian2016Synchronisation}, zero-correlation-code (ZCC) pair is proposed to synchronize signal in DCO-OFDM-based VLC systems. In \cite{Qian2017}, modified ZCC pair generated via PHYDYAS filters can be used to obtain the gains and delays of the multi-path channels.
-%There is no frequency offset in VLC systems due to the intensity modulation and demodulation property. This makes synchronization and channel estimation process easier than systems in radio communications.
-Unlike DCO-OFDM systems, the transmitted signals of ACO-OFDM systems from the data generated after IFFT process are clipped at zero. It is hard to exploit ZCC pair sequences in ACO-OFDM systems directly. To reserve the impulse-like correlation property of ZCC pair sequences, the received signals must be investigated.
+	In \cite{Qian2016Synchronisation}, zero-correlation-code (ZCC) pair is proposed to synchronize signal in DCO-OFDM-based VLC systems. In \cite{Qian2017}, modified ZCC pair generated via PHYDYAS filters can be used to obtain the gains and delays of the multi-path channels. Unlike DCO-OFDM systems, the transmitted signals of ACO-OFDM systems from the data generated after IFFT process are clipped at zero. It is hard to exploit ZCC pair sequences in ACO-OFDM systems directly. To reserve the impulse-like correlation property of ZCC pair sequences, the received signals must be investigated.
 	
-	The following is to show that $ y(n)-y(n+N/2) $ contains $ C $.
-	%If $C$ is generated to be ZCC pair sequence,
-	We denote the $A^{'}$ and $A^{''}$ as the parts of the delayed $A$ and denote  $B^{'}$ and $B^{''}$ as the parts of the delayed $B$ and delayed CP.
+	The following is to show that $ y(n)-y(n+N/2) $ contains $ C $.	We denote the $A^{'}$ and $A^{''}$ as the parts of the delayed $A$ and denote  $B^{'}$ and $B^{''}$ as the parts of the delayed $B$ and delayed CP.
 	By investigating the effect of multi-path channels,
 	\begin{figure}[htb]
 		\centering \includegraphics[width=5cm]{effect_of_channel_ACO_OFDM.eps}
@@ -185,11 +124,7 @@ Unlike DCO-OFDM systems, the transmitted signals of ACO-OFDM systems from the da
 	\end{figure}
 	Since $C^{'}=A^{'}-B^{'}$ and $C^{''}=A^{''}-B^{''}$, the results of $y(n)-y(n+N/2)$ are shown in Fig.\ref{fig:effect_of_channel_ACO_OFDM}.
 	
-	If $C$ and $D$ are set to be the ZCC pair sequence and the pair sequence, the aperiodic correlation between $C$ and $D$ is impulse-like.
-	%Since there is no frequency offset in VLC systems,
-	%As shown in \cite{Qian2017}, the
-	Because $ \sum_{n=0}^{N/2-1}C(n+k)D^*(n)=N/2 \delta(k) $, the CSI can be estimated via
-	%\begin{small}
+	If $C$ and $D$ are set to be the ZCC pair sequence and the pair sequence, the aperiodic correlation between $C$ and $D$ is impulse-like. 	Because $ \sum_{n=0}^{N/2-1}C(n+k)D^*(n)=N/2 \delta(k) $, the CSI can be estimated via
 	\begin{align}\label{equ:gain_acquire}
         %\begin{split}
           \bar{h}(k)&\nonumber\\
@@ -200,10 +135,8 @@ Unlike DCO-OFDM systems, the transmitted signals of ACO-OFDM systems from the da
           =&\sum_{l=0}^{L-1}h(l)\delta(k-l)+\tilde{w}(k).
         %\end{split}
     \end{align}
-	%\end{small}
-    %where $\tilde{w}(k)$ denotes the noise.
 
-    The next step is to design the required preamble sequence for synchronization and channel estimation. %According to (\ref{equ:sim_transmitter}), all the sub-carriers are needed to generate $ C $. to some extent.
+    The next step is to design the required preamble sequence for synchronization and channel estimation. 
 
 	The detailed steps to generate $ C $ are listed as:
 
@@ -272,9 +205,6 @@ Unlike DCO-OFDM systems, the transmitted signals of ACO-OFDM systems from the da
                     Bandwidth & 500MHz \\
                     \hline
                     Constellation order & 16QAM \\
-                    %Maximum time delay $\tau_{max}$ & 50  \\
-                    %Number of paths L & [$0.1\tau_{max}$,$0.9\tau_{max}$] \\
-                    %Pilot distribution & Scattered \\
                     \hline
                     Simulation trial number & 100000 \\
                     \hline
@@ -296,7 +226,6 @@ Unlike DCO-OFDM systems, the transmitted signals of ACO-OFDM systems from the da
 		\caption{The MSE performance comparison of synchronization schemes} \label{fig:synchronization_mse}
     \end{figure}
     Fig.\ref{fig:synchronization_mse} shows the normalized MSE value of timing offset estimation with respect to the IFFT length. The MSE values of the three schemes decrease with enlarging the SNR value. The Tian's scheme achieves the worst performance compared with the Ranjha's and proposed schemes. When SNR value is large, the estimation error is just one third of that of Ranjha's scheme. If the SNR is below 16 dB, the Ranjha's scheme has better performance but the performance difference is small.
-    %As to the calculation complexity, the Tian's scheme needs $ N/2-2 $ multiplications at each discrete sample time, while Bilal's \cite{Ranjha2015} and proposed schemes both need
     In \cite{chow2013adaptive}, the OFDM-based VLC systems using common LEDs are tested and the suggested SNR values are over 18dB.
     Thus, the proposed scheme is good enough.
 
@@ -307,17 +236,12 @@ Unlike DCO-OFDM systems, the transmitted signals of ACO-OFDM systems from the da
     \end{figure}
     Fig.\ref{fig:channel_estimation_HMSE} presents a comparison of channel frequency response estimation performance. The channel frequency estimation MSE value of LS scheme decreases with enlarging SNR with steady slope, while the MSE value of proposed scheme drops gradually to a level but is much lower than that of LS scheme. The proposed scheme has better channel estimation performance than LS scheme.
 
-    %In terms of the calculation complexity, for the proposed algorithm, most calculation can be done via the system FFT module. Only $ N/2 $ multiplications are needed for the simplified channel frequency response.
-    %The proposed algorithm is easier than conventional
-
     \begin{figure}[!htb]
     	\centering \includegraphics[width=7cm]{channel_estimation_BER.eps}
 		\caption{The BER performance comparison of LS and proposed scheme} \label{fig:channel_estimation_BER}
     \end{figure}
 
 	Fig.\ref{fig:channel_estimation_BER} shows BER performances of the LS scheme, proposed scheme and the ideal performance with prior knowledge of CSI. The proposed scheme has BER performance similar to the ideal performance and is better than LS scheme.
-	
-	%Overall, the proposed joint synchronization and channel estimation scheme has better performance than other schemes.
 
 \section{Conclusion}
 In this letter, a joint synchronization and channel estimation scheme is proposed for ACO-OFDM systems. A simplified transceiver is proposed which only needs half the calculations compared with conventional transceiver. Simulations have revealed that the proposed scheme has better timing MSE performance than Tian's and Ranjha's schemes in synchronization task and has better channel frequency response MSE performance and BER performance than LS channel estimation scheme.
