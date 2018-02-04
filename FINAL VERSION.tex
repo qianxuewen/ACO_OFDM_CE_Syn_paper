@@ -1,48 +1,12 @@
-%\documentclass[a4paer]{article}
-%\documentclass[12pt,onecolumn]{IEEEtran}
-%\linespread{1.6}
-%\documentclass[11pt,journal,comsoc]{IEEEtran}
 \documentclass[10pt,journal]{IEEEtran}
 \usepackage{caption}
-
 \usepackage{amsmath}
-%\usepackage{booktabs}
-
-%\usepackage[cmintegrals]{newtxmath}
 \usepackage{graphicx}
 \usepackage{subfigure}
-%\usepackage{multirow}
-%\usepackage{diagbox}
-%\usepackage{stfloats}
 \usepackage[square, comma, sort&compress, numbers]{natbib}
-%\usepackage{cite}
-%\usepackage[table]{xcolor}
-%\usepackage[table,xcdraw]{xcolor}
-%\usepackage{algorithm} %//format of the algorithm
-%\usepackage{algorithmic} %//format of the algorithm
-%\usepackage{titlesec}
 
-
-%\newenvironment{sequation}{\begin{equation}\small}{\end{equation}}
-%\usepackage[nocompress]{cite}
-%\renewcommand\citepunct{,~}
-%\renewcommand\citedash{-}
-%\usepackage{algpseudocode}
-%\documentclass[journal]{IEEEtran}
-%
-%\ifCLASSINFOpdf
-%\else
-%\fi
-%
-%\hyphenation{op-tical net-works semi-conduc-tor}
-%
-%\usepackage{amsmath}
-%\usepackage{graphicx}
-%%\usepackage[nosort]{cite}
 
 \begin{document}
-%\title{A robust synchronization algorithm for OFDM/OQAM system}
-%\Large
 \bibliographystyle{IEEEtran}
 
 
@@ -52,7 +16,7 @@
 Manuscript received October 11, 2017; revised December 27, 2017; accepted January 7, 2018. Date of publication January XX, 2018; date of current version May 19, 2016. This work was supported by Central South University under Post-graduation Innovation Fund project (2016zzts228) and Mittal Innovation Fund project. It is also supported by Research Foundation of Education Bureau of Hunan Province [Project No. 17B238].
 }
 \thanks{
-Xuewen Qian is with Laboratoire des Signaux et Syst¨¨mes (L2S), CentraleSup\'elec-CNRS-Universit\'e Paris-Sud, Universit\'e Paris-Saclay, 3, rue Joliot Curie, 91192, Gif-sur-Yvette, France (e-mail: xuew.qian@gmail.com).
+Xuewen Qian is with Laboratoire des Signaux et Systï¿½ï¿½mes (L2S), CentraleSup\'elec-CNRS-Universit\'e Paris-Sud, Universit\'e Paris-Saclay, 3, rue Joliot Curie, 91192, Gif-sur-Yvette, France (e-mail: xuew.qian@gmail.com).
 Honggui~Deng is with the Department of Physics and Electronics, Central South University (e-mail: denghonggui@163.com).
 Hailang He is with Department of Information Engineering, Shaoyang University, Shaoyang, Hunan, China (e-mail:7887302@qq.com).
 }
@@ -106,7 +70,7 @@ The rest is organized as follows. In Section II, the system model is presented, 
 		A realistic VLC channel is determined by many factors. As simulated in \cite{Uysal2015Lifi}, in manufacturing cell environment, the maximum path delay may exceed 80ns which is bigger than that of home environment.
 %the maximum path delay in home environment is about 60ns and there is often one line of sight (LOS) response while the not line of sight (NLOS) responses are extremely small. However in manufacturing cell environment, the maximum path delay may exceed 80ns.
 There are more strong responses as many light traces.
-		
+
 		The VLC channel can be modeled as
         \begin{equation}\label{channel_model}
           h(\tau)=\sum_{l=0}^{L-1}g(l)\delta(\tau-\tau_l),
@@ -145,20 +109,20 @@ There are more strong responses as many light traces.
           \widehat{H}(2m+1) = Y(2m+1) / X_c(2m+1), 0\leq m\leq N-1.
         \end{equation}
         %since only the used sub-channels are useful.
-		
+
 	\subsection{Simplified Transmitter and Receiver}
 		Since the original signals are clipped at zero, the direct FFT results of $ x_c(n) $ are not the same as that of $ x(n) $, but the odd sub-carriers are not distorted. %Only the odd sub-carriers are necessary.
-		
+
 		If we denote $ C $ as the first half of $ x(n) $, then $ x=[C;-C] $. If we denote $ A $ and $ B $ as the first half and second half of $ x_c(n) $, then $ C = A - B $. Thus, when $ C $ is generated via IFFT of $ N/2 $ length, $ x(n) $ can be obtained without using IFFT of $ N $ length which reduces the calculation complexity.
-		
-		For $ 0\leq n \leq N/2-1 $, $ C $ can be generated via		
+
+		For $ 0\leq n \leq N/2-1 $, $ C $ can be generated via
 		\begin{eqnarray}\label{equ:sim_transmitter}
 			x(n) &=& \sum_{i=0}^{N/2-1} X_{2i+1}e^{j\frac{2\pi}{N}n(2i+1)} \nonumber\\
 				 &=& \sum_{k=0}^{N/2-1} X_{k} e^{j\frac{2\pi}{N/2}nk}e^{j\frac{2\pi}{N}n} \nonumber\\
 				 &=& IFFT(X)_{N/2}e^{j\frac{2\pi}{N}n},
 		\end{eqnarray}
 		where $ IFFT(\cdot)_{N/2} $	represents the IFFT process of $ N/2 $ length.	There are $ N/2 log_2(N/2) + N/2 = N/2 log_2(N) $ multiplications used in generation of $ C $ which is just  half the calculations of conventional method $( N log_2(N) )$.
-		
+
 		For the receiver, the results of the FFT process must be multiplied with 2 due to the signal clipping \cite{Wang2017Optical}. Since only the odd sub-carriers are necessary, thus the received data on the $ 2i+1 $ sub-carrier can be obtained as
         %\begin{small}
 		\begin{eqnarray}\label{equ:sim_receiver}
@@ -176,17 +140,17 @@ There are more strong responses as many light traces.
 		\end{eqnarray}
         %\end{small}
 		where $ FFT(\cdot)_{N/2} $	represents the FFT process of $ N/2 $ length. Just as the proposed transmitter, the computational complexity of proposed receiver is half that of conventional receiver.
-				
+
 		%\begin{figure}[htb]
 		%	\centering \includegraphics[width=8cm]{asymmetric_property_ACO_OFDM.eps}
 		%	\caption{The symmetric property of symbols after the multipath channels} \label{fig:symmetric_property_illustration}
 		%\end{figure}
-		
-\section{Synchronization and Channel Estimation Scheme with Low Complexity Transceiver}		
+
+\section{Synchronization and Channel Estimation Scheme with Low Complexity Transceiver}
 	In \cite{Qian2016Synchronisation}, zero-correlation-code (ZCC) pair is proposed to synchronize signal in DCO-OFDM-based VLC systems. In \cite{Qian2017}, modified ZCC pair generated via PHYDYAS filters can be used to obtain the gains and delays of the multi-path channels.
 %There is no frequency offset in VLC systems due to the intensity modulation and demodulation property. This makes synchronization and channel estimation process easier than systems in radio communications.
 Unlike DCO-OFDM systems, the transmitted signals of ACO-OFDM systems from the data generated after IFFT process are clipped at zero. It is hard to exploit ZCC pair sequences in ACO-OFDM systems directly. To reserve the impulse-like correlation property of ZCC pair sequences, the received signals must be investigated.
-	
+
 	The following is to show that $ y(n)-y(n+N/2) $ contains $ C $.
 	%If $C$ is generated to be ZCC pair sequence,
 	We denote the $A^{'}$ and $A^{''}$ as the parts of the delayed $A$ and denote  $B^{'}$ and $B^{''}$ as the parts of the delayed $B$ and delayed CP.
@@ -197,7 +161,7 @@ Unlike DCO-OFDM systems, the transmitted signals of ACO-OFDM systems from the da
 		\caption{The illustration for the effect of multipath channels on symbols} \label{fig:effect_of_channel_ACO_OFDM}
 	\end{figure}
 	Since $C^{'}=A^{'}-B^{'}$ and $C^{''}=A^{''}-B^{''}$, the results of $y(n)-y(n+N/2)$ are shown in Fig.\ref{fig:effect_of_channel_ACO_OFDM}.
-	
+
 	If $C$ and $D$ are set to be the ZCC pair sequence and the pair sequence, the aperiodic correlation between $C$ and $D$ is impulse-like.
 	%Since there is no frequency offset in VLC systems,
 	%As shown in \cite{Qian2017}, the
@@ -338,7 +302,7 @@ Unlike DCO-OFDM systems, the transmitted signals of ACO-OFDM systems from the da
     \end{figure}
 
 	Fig.\ref{fig:channel_estimation_BER} shows BER performances of the LS scheme, proposed scheme and the ideal performance with prior knowledge of CSI. The proposed scheme has BER performance similar to the ideal performance and is better than LS scheme.
-	
+
 	%Overall, the proposed joint synchronization and channel estimation scheme has better performance than other schemes.
 
 \section{Conclusion}
